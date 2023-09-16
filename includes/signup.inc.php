@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     try {
         require_once "dbh.inc.php";
-        require_once "signup_model.php";
-        require_once "signup_contr.php";
+        require_once "signup_model.inc.php";
+        require_once "signup_contr.inc.php";
 
         // ERROR HANDLERS
 
@@ -25,9 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["email_taken"] = "Email taken!";
         }
 
+        require_once "config_sessions.inc.php";
+
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
             header("Location: ../index.php");
+            die();
         }
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
