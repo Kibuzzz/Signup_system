@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 require_once "config_sessions.inc.php";
 
 function check_if_errors()
@@ -13,5 +12,7 @@ function check_if_errors()
             echo "<p>$error</p>" . "<br>";
         }
         unset($_SESSION["errors_signup"]);
+    } else {
+        echo "<br>There are no errors<br>";
     }
 }
